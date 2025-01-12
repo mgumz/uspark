@@ -1,0 +1,22 @@
+[package]
+name = "uspark"
+version = "0.1.0"
+authors = ["Mathias Gumz <mg@2hoch5.com>"]
+
+description = "▁▂▃▄▅▆▇█ spark lines █▇▆▅▄▃▂▁"
+repository = "https://github.com/mgumz/uspark"
+readme = "README.md"
+license = "GPL2"
+edition = "2021"
+
+[[bin]]
+name = "uspark"
+path = "src/main.rs"
+doc = false
+
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
