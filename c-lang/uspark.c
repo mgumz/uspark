@@ -33,6 +33,7 @@ const char errMinLargerAsMax[] = "error: USPARK_MIN > USPARK_MAX";
 const char* themeBars[] =    { "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█", };
 const char* themeLines[] =   { "▁", "⎽", "⎼", "‒", "⎻", "⎺", "‾", "▔", };
 const char* themeBraille[] = { "⣀", "⠤", "⠒", "⠉", };
+const char* themeShades[] =  { " ", "░", "▒", "▓", "█", };
 
 /*------------------------------------------------------------------*\
 \*------------------------------------------------------------------*/
@@ -60,6 +61,9 @@ int main(int argc, char* argv[]) {
         } else if (str_diff(argv[i], "-braille") == 0) {
             sparks = themeBraille;
             n_sparks = sizeof(themeBraille) / sizeof(themeBraille[0]);
+        } else if (str_diff(argv[i], "-shades") == 0) {
+            sparks = themeShades;
+            n_sparks = sizeof(themeShades) / sizeof(themeShades[0]);
         } else if (str_diff(argv[i], "--") == 0) {
             argv = &argv[i];
             argc = argc - i;
@@ -144,7 +148,16 @@ int main(int argc, char* argv[]) {
 
 static inline int usage() {
 
-    static const char txt[] = "uspark [n [n ...]]";
+    static const char txt[] = "uspark - shows a sparkline on the terminal\n\n"
+        "Usage:\n\n"
+        "   uspark [OPTS] [n [n ...]]\n\n"
+        "Options:\n\n"
+        "   -bars       - use bars (default)\n"
+        "   -lines      - use lines\n"
+        "   -braille    - use braille chars\n"
+        "   -shades     - use shades chars\n"
+        "   -h          - show usage / help\n";
+        
     write_nl(1, txt, sizeof(txt));
     return 0;
 }
